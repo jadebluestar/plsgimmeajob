@@ -5,13 +5,13 @@ class Solution:
         heapq.heapify(maxHeap)
 
         time = 0
-        q = deque() #pair of [-cnt, idleTime]
+        q = deque() #pair of [-cnt, idleTime/time to be ready next time
         while maxHeap or q:
             time += 1
             if maxHeap:
                 cnt = 1 + heapq.heappop(maxHeap)
                 if cnt:
                     q.append([cnt, time + n])
-            if q and q[0][1] == time:
+            if q and q[0][1] == time: #[1] cause time starts from 1
                 heapq.heappush(maxHeap, q.popleft()[0])
         return time
