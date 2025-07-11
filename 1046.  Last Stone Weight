@@ -11,3 +11,9 @@ class Solution:
 
         stones.append(0)
         return abs(stones[0])
+
+Original largest: 8
+
+Negated version: -8 → the smallest in the min heap.
+
+So, the min heap naturally pops -8 first → which means you’ve extracted the original largest stone!
