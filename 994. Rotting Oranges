@@ -1,0 +1,94 @@
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        q = deque()
+        time, fresh = 0, 0
+
+        ROWS, COLS = len(grid), len(grid[0])
+        for r in range(ROWS):
+            for c in range(COLS):
+                if grid[r][c] == 1:
+                    fresh += 1
+                if grid[r][c] == 2:
+                    q.append([r, c])
+
+        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+
+        while q and fresh > 0:
+            for i in range(len(q)):
+                r, c = q.popleft()
+                for dr, dc in directions:
+                    row, col = dr +r, dc+c
+                # if in bounds and fresh, make it rotten
+
+                    if (row< 0 or col< 0 or row == len(grid)
+                    or col == len(grid[0]) or grid[row][col] != 1):
+                        continue
+                    grid[row][col] = 2
+                    q.append([row, col])
+                    fresh -= 1
+
+            time += 1
+
+        return time if fresh == 0 else -1
+
+    ________________________________________________________________________________________________________
+
+    0ms solution
+    '''
+starting from every rotten organge, we do bfs, we expand to their neighbors[4 directions]
+and we continue to do bfs to reach all the oranges until
+
+technique: we change the fresh oranges to 2 if rotten
+
+after we finish the bfs, we traverse this matrix again and check if any fresh oranges
+
+time complexity: O(n)
+space complexity: O(n)
+
+Initial state gathering: "We scan the grid to count fresh oranges and collect all rotten oranges in a queue."
+
+BFS loop: "At each minute, we process all rotten oranges in the queue and rot their 4-direction neighbors."
+
+Final condition: "After BFS, if any fresh oranges remain, return -1, else return time."
+
+Bring up a few edge cases proactively:
+
+No fresh oranges → return 0
+
+Grid with only empty cells
+
+Fresh orange surrounded by empty cells → unreachable
+'''
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        ROWS, COLS = len(grid), len(grid[0])
+        #find all the rotten oranges and push it into q
+        q = deque()
+        fresh_orange = 0
+        for r in range(ROWS):
+            for c in range(COLS):
+                if grid[r][c] == 2:
+                    q.append((r, c))
+                if grid[r][c] == 1:
+                    fresh_orange += 1
+        if (len(q) == 0 and fresh_orange == 0):
+            return 0
+
+        #start bfs, explore 4 neighbors
+        count = -1
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while q:
+            count += 1
+            level_size = len(q)
+            for i in range(level_size):
+                row, col = q.popleft()
+                for r, c in directions:
+                    nr = row + r
+                    nc = col + c
+                    #check if (nr, nc) in bound
+                    if 0 <= nr < ROWS and 0 <= nc < COLS and grid[nr][nc] == 1:
+                        grid[nr][nc] = 2
+                        q.append((nr, nc))
+                        fresh_orange -= 1
+
+        return count if not fresh_orange else -1
