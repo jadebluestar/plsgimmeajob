@@ -8,3 +8,14 @@ class Solution:
                 return [PrevMap[diff], i]
             PrevMap[n] = i #PrevMap is now {n: i}
         return[]
+
+
+this is like a shorter solution
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        new_dict = {}
+        for i in range(len(nums)):
+            if new_dict and (target - nums[i]) in new_dict:
+                return [new_dict[target-nums[i]], i]
+            new_dict[nums[i]] = i
+
