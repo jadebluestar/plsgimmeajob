@@ -1,0 +1,14 @@
+class Solution:
+    def check(self, nums: List[int]) -> bool:
+        count = 0
+        n = len(nums)
+
+        for i in range(n):
+            if nums[i] > nums[(i+1)%n]: #check if i is the last ele then mod it to make it circular
+                count += 1
+            
+                if count > 1: #it means that the given count > 1 and it is not even sorted nor it is rotated
+                    return False
+
+        return True
+        
