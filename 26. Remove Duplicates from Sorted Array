@@ -1,0 +1,26 @@
+my solution: O(n)
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        k = 1
+        n = len(nums)
+        if not nums:
+            return 0
+        for i in range(1, n):
+            if nums[i] != nums[i-1]:
+                nums[k] = nums[i]
+                k += 1
+                
+        return k
+--------------------------------------------------------------
+0ms runtime with O(N) but faster
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        left_pointer = 1 
+
+        for right_pointer in range(1 , len(nums)):
+            if nums[right_pointer] != nums[left_pointer - 1]:
+                nums[left_pointer] = nums[right_pointer]
+                left_pointer += 1
+        return left_pointer
+         
