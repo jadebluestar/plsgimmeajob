@@ -1,0 +1,54 @@
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums) 
+        k %= n # if k = nums
+
+        def reverse(left, right):
+            while left < right:
+                nums[right], nums[left] = nums[left], nums[right]
+                right -=1
+                left +=1
+
+        reverse(0, n-1) # first reverse the entire string [5, 4. 3, 2, 1] 
+        reverse(0, k-1) # then rotate the kth path of the stirng k=2 [4, 5, 3, 2, 1]
+        reverse(k, n-1) # the reverse the rest of it [4, 5, 1, 2, 3]
+
+
+----------------------takes extra memory O(N):----------------------------------------
+k %= len(nums)
+nums[:] = nums[-k:] + nums[:-k] # -k is all the last k nums and :-k is all except the last k nums
+
+------------------------takes an extra DS i.e queue-------------------------------
+from collections import deque
+
+nums = deque(nums)
+nums.rotate(k)
+
+--------------------pretty good no extra space but lengthy----------------------------
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        
+        n = len(nums)
+        k %= n
+        count = 0
+        start = 0
+
+        while count < n:
+            current = start # this is the index
+            prev = nums[start]
+            while True:
+                nxt = (current + k) % n # new index will be the cur + k
+                nums[nxt], prev = prev,nums[nxt] # exchange the places
+                current = nxt
+                count += 1 # counts num of elements moved so far
+                if start == current:
+                    break
+            start += 1 # moves to the next element
+
+
