@@ -1,0 +1,23 @@
+turns out this just requires a bunch of if else statements, i just over thought this problem
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        
+        right_ptr = len(nums)-1
+        left_ptr = 0
+        i = 0
+
+        while (nums[i] <= right_ptr):
+            if nums[i] == 0:
+                left_ptr, nums[i] = nums[i], left_ptr
+                left_ptr += 1
+                i += 1
+            elif nums[i] == 2:
+                right_ptr, nums[i] = nums[i], right_ptr
+                right_ptr -= 1
+            else:
+                i += 1
+                
