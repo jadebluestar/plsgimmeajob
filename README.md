@@ -1,6 +1,6 @@
 # Cosmetic hack (python((not recommended))
 The __import__("atexit") line
-That weird line at the top:
+just overides the text module to display 0 runtime
 ```python
 __import__("atexit").register(lambda: open("display_runtime.txt", "w").write("0"))
 ```
