@@ -1,3 +1,9 @@
+# Cosmetic hack (python((not recommended))
+The __import__("atexit") line
+That weird line at the top:
+```python
+__import__("atexit").register(lambda: open("display_runtime.txt", "w").write("0"))
+```
 # Bit Manipulation
 
 A complete reference for **bitwise operations**, **truth table logic**, and **common LeetCode patterns**.  
