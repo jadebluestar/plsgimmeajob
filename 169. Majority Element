@@ -1,0 +1,37 @@
+------------------Boyer-Moore Algo------------------------
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        count = 0
+        max = None
+
+        for num in nums:
+            if count == 0:
+                max = num
+            count += 1 if num == max else -1
+        return max
+
+-----------------lower run time-------------
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        n = len(nums) / 2
+        
+        for i in set(nums): # unique set of elements
+            if nums.count(i) >= n: # checks for count of i in og list of elemts
+                return i
+
+
+----------------BRUTE FORCE --------------exceeds tle-----------
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        count = 0
+        n = len(nums)
+
+        for i in range(n):
+            count = 0 # Reset count inside the outer loop = counts occurrences of one element at a time.
+            for j in range(n):
+                if nums[i] == nums[j]:
+                    count += 1
+                else:
+                    continue
+            if count > (n//2):
+                return nums[i]
