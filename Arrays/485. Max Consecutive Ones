@@ -1,0 +1,18 @@
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+       
+        curSum = 0
+        maxSum = 0
+
+        for num in nums:
+            if num == 1:
+                curSum += 1
+            
+            # reset the count to 0 if there is a num other than 0
+            else:
+                curSum = 0
+            # after resetting the cursum == maxsum n the loop continues
+            maxSum = max(maxSum, curSum)
+
+        return maxSum
+            
