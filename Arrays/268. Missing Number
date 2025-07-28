@@ -1,0 +1,15 @@
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        expectedSum = n * (n + 1) // 2
+        actualSum = 0
+
+        for num in range(n):
+            actualSum += nums[num]
+        
+
+        return expectedSum - actualSum
+
+
+-------------- can also be solved with bit manipulation
+            
