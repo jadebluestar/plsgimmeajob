@@ -1,0 +1,40 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        count = 0
+        curSum = 0
+        # prefixMap stores {prefix_sum: frequency}
+        # Start with {0:1} because a prefix sum of 0 occurs once (before array starts)
+        prefixMap = {0: 1}
+
+        for n in nums:
+            # Add current number to running prefix sum
+            curSum += n
+
+            # If there is a previous prefix sum such that curSum - prevSum = k,
+            # then the subarray between that point and current index sums to k
+            if (curSum - k) in prefixMap:
+                # Add how many times that previous prefix sum occurred
+                count += prefixMap[curSum - k]
+
+            # Record the current prefix sum in the map
+            # Increment its frequency (or start from 1 if not seen before)
+            prefixMap[curSum] = prefixMap.get(curSum, 0) + 1
+
+        return count
+
+
+----------Brute Force------------O(n^2)------
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        count = 0
+
+        for i in range(n):
+            newSum = 0
+            for j in range(i, n):
+                newSum += nums[j]
+                if newSum == k:
+                    count += 1
+
+        return count
