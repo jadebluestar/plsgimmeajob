@@ -1,0 +1,38 @@
+class Solution:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = []
+        pos = [ x for x in nums if x > 0 ] # list with all the positive nums
+        neg = [ x for x in nums if x < 0 ] # list with all the neg nums
+        i = j = 0
+
+        while i < len(pos) and j < len(neg):
+            res.append(pos[i])
+            res.append(neg[j])
+            i += 1
+            j += 1
+
+        return res
+
+
+            
+--------with python in built function------------
+
+class Solution:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = []
+        pos = [ x for x in nums if x > 0 ] # list with all the positive nums
+        neg = [ x for x in nums if x < 0 ] # list with all the neg nums
+        
+
+        for i, j in zip(pos, neg):
+            res.append(i)
+            res.append(j)
+            
+
+        return res
+
+
+            
+
