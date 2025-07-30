@@ -305,6 +305,69 @@ Prefix searches, autocomplete.
 | Manacher     | O(n)     | O(n)   |
 | Tarjan       | O(V+E)   | O(V+E) |
 
+# Python Built-in Functions Cheat Sheet
+
+This document lists commonly used Python built-in functions with short descriptions and examples.
+
+---
+
+## 🔹 1. General Functions
+| Function | Description | Example |
+|----------|-------------|---------|
+| `len()` | Returns the length of an object | `len([1,2,3]) # 3` |
+| `type()` | Returns the type of an object | `type(42) # <class 'int'>` |
+| `id()` | Returns unique identifier for an object | `id(a)` |
+
+---
+
+## 🔹 2. Iterable Functions
+| Function | Description | Example |
+|----------|-------------|---------|
+| `zip()` | Combines iterables element-wise into tuples | `zip([1,2],[3,4]) -> [(1,3),(2,4)]` |
+| `enumerate()` | Returns index and value while iterating | `for i,v in enumerate(['a','b']): print(i,v)` |
+| `sorted()` | Returns a sorted list | `sorted([3,1,2]) -> [1,2,3]` |
+| `reversed()` | Returns an iterator in reverse order | `list(reversed([1,2,3])) -> [3,2,1]` |
+
+---
+
+## 🔹 3. Numeric Functions
+| Function | Description | Example |
+|----------|-------------|---------|
+| `sum()` | Sums elements in iterable | `sum([1,2,3]) # 6` |
+| `max()` | Largest element | `max([1,3,2]) # 3` |
+| `min()` | Smallest element | `min([1,3,2]) # 1` |
+| `abs()` | Absolute value | `abs(-5) # 5` |
+
+---
+
+## 🔹 4. Functional Programming
+| Function | Description | Example |
+|----------|-------------|---------|
+| `map()` | Apply function to iterable | `map(str, [1,2,3]) -> ['1','2','3']` |
+| `filter()` | Filter iterable based on function | `filter(lambda x: x>0, [-1,2,-3]) -> [2]` |
+| `any()` | True if any element is True | `any([0,1,0]) # True` |
+| `all()` | True if all elements are True | `all([1,1,1]) # True` |
+
+---
+
+## 🔹 5. Type Conversions
+`int()`, `float()`, `str()`, `list()`, `tuple()`, `dict()`, `set()` – convert between data types.
+
+---
+
+## 🔹 6. I/O Functions
+| Function | Description | Example |
+|----------|-------------|---------|
+| `print()` | Outputs to console | `print("Hello")` |
+| `input()` | Takes user input | `x = input("Enter:")` |
+| `open()` | Opens a file | `open('file.txt','r')` |
+
+---
+
+### ✅ Quick Note:
+- Most built-in functions: [Python Official Docs](https://docs.python.org/3/library/functions.html)
+
+
 ---
 
 
