@@ -1,0 +1,50 @@
+tc = sc = O(m*n)
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        # n = len(matrix) : this considers the matrix to be a square
+        row = len(matrix)
+        col = len(matrix[0])
+        rows0 = set()
+        cols0 = set()
+
+        # checks if the elemnt is == 0
+        for r in range(row):
+            for c in range(col):
+                if matrix[r][c] == 0:
+                    rows0.add(r)
+                    cols0.add(c)
+        # sets all the rows to zero
+        for r in rows0:
+            for c in range(col):
+                matrix[r][c] = 0
+        # sets all the cols to zero
+        for c in cols0:
+            for r in range(row):
+                matrix[r][c] = 0
+
+
+--------Time Complexity: O(m × n × (m + n)) ≈ O(m²n + mn²) (still heavy for large matrices).---------
+Space Complexity: O(m × n) (because of original copy).
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        # n = len(matrix) : this considers the matrix to be a square
+        row = len(matrix)
+        col = len(matrix[0])
+        original = [row[:] for row in matrix] # this is if we have to change the element in place
+
+        for r in range(row):
+            for c in range(col):
+                if original[r][c] == 0:
+
+                    for i in range(row):
+                        matrix[i][c] = 0
+
+                    for i in range(col):
+                        matrix[r][i] = 0
