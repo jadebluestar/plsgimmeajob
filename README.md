@@ -1,3 +1,5 @@
+<img width="1000" height="704" alt="image" src="https://github.com/user-attachments/assets/c54d0c6b-a8ba-4d91-b6cf-d7ff5b23bc66" />
+
 # Cosmetic hack (python((not recommended))
 The __import__("atexit") line
 just overides the text module to display 0 runtime
