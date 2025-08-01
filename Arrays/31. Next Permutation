@@ -1,0 +1,37 @@
+---------cpp in built function for this----------
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+
+        std::next_permutation(nums.begin(), nums.end());
+        
+    }
+};
+-------------------------------------------------------------------------
+https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
+----------------------------------------------------------------------------
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+
+        # STEP 1: Find the first index i (from right) where nums[i] < nums[i+1]
+        i = n - 2  # start from second last element
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+        
+        # If i < 0, array is completely descending → last permutation
+        # Then next permutation is the first one → just reverse the whole array
+        if i >= 0:
+            # STEP 2: Find j (from right) such that nums[j] > nums[i]
+            j = n - 1
+            while nums[j] <= nums[i]:
+                j -= 1
+            
+            # Swap nums[i] and nums[j]
+            nums[i], nums[j] = nums[j], nums[i]
+        
+        # STEP 3: Reverse everything after index i to make suffix smallest
+        nums[i + 1:] = reversed(nums[i + 1:])
