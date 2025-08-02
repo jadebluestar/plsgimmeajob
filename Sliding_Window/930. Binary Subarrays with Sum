@@ -1,0 +1,36 @@
+class Solution:
+    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        """
+        Counts the number of subarrays with sum exactly equal to goal.
+        Approach: Use a helper function that counts subarrays with sum <= x.
+        Then apply: count(sum <= goal) - count(sum <= goal - 1)
+        """
+
+        def helper(x):
+            """
+            Count subarrays with sum <= x using sliding window.
+            Works because nums contains only 0 and 1.
+            """
+            if x < 0:
+                return 0  # No subarray can have sum <= negative number
+
+            res = 0     # Total count of subarrays
+            cur = 0     # Current sum of the window
+            l = 0       # Left pointer of the window
+
+            # Expand window by moving 'r'
+            for r in range(len(nums)):
+                cur += nums[r]
+
+                # Shrink from left until sum <= x
+                while cur > x:
+                    cur -= nums[l]
+                    l += 1
+
+                # All subarrays ending at r and starting from l...r are valid
+                res += (r - l + 1)
+
+            return res
+
+        # Subarrays with sum = goal
+        return helper(goal) - helper(goal - 1)
