@@ -1,0 +1,28 @@
+
+
+class Solution:
+    def numberOfSubstrings(self, s: str) -> int:
+        res = 0
+        n = len(s)
+        l = 0
+        # a hashmap to store the value and count of the three variables
+
+        count = { 'a':0, 'b':0, 'c':0}
+
+        for r in range(n):
+            # increase the count of the ele r in string s
+            count[s[r]] += 1
+
+            # make sure that in the string all the elements are there atleast 1
+            while count['a'] > 0 and count['b'] > 0 and count['c'] > 0:
+                # total substrings will be the n - r
+                res += (n - r) # r, r+1, r+2, …, n-1 which is why n-r substrings
+                # keep moving the left pointer to the right to compress the sting
+                count[s[l]] -= 1
+
+                l+=1
+        return res
+
+
+            
+
