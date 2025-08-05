@@ -1,0 +1,18 @@
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+
+        res = [[1]]
+        
+        for i in range(1, numRows):
+            # add padding for easier addition for the last row of res
+            temp = [0] + res[-1] + [0]
+            # make a new row to store the res
+            row = []
+            # If the last row has k elements, the new row will have k + 1 elements.
+            for j in range(len(res[-1]) + 1):
+            # 0+1=1, 1+2=3, 2+1=3, 1+0=1
+                row.append(temp[j] + temp[j+1])
+            res.append(row)
+
+        return res
+            
