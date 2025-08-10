@@ -1,3 +1,22 @@
+---------------more optimized solution------------------------
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        last_seen = {}
+        maxL = 0
+        l = 0
+       
+        for r, ch in enumerate(s): # gives (index, char) every loop
+            if ch in last_seen and last_seen[ch] >= l: # If it’s less than l, that means it was far back, outside the window, so we can ignore it. it is also an index
+                l = last_seen[ch] + 1
+            last_seen[ch] = r
+            
+            maxL = max(maxL, r - l + 1)
+        return maxL
+
+
+
+----------------neetcode solution-----------------------------
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         l = 0
