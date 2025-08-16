@@ -1,0 +1,31 @@
+class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        zeros = 0
+        res = 0
+        l = 0
+        # l -> first ele, r -> last ele
+        for r in range(n):
+            if nums[r] == 0:
+                zeros += 1
+            
+            while zeros > k:
+                if nums[l] == 0:
+                    zeros -= 1
+                # If zeros got too many, we shifted l forward until window became valid again (≤ k zeros)
+                l += 1
+            
+            res = max(res, r - l + 1)
+
+        return res
+
+
+
+            
+
+
+
+
+
+
+        
