@@ -1,0 +1,49 @@
+Longest Substring With At Most K Distinct Characters
+
+Given a string s and an integer k.Find the length of the longest substring with at most k distinct characters.
+
+
+Examples:
+Input : s = "aababbcaacc" , k = 2
+
+Output : 6
+
+Explanation : The longest substring with at most two distinct characters is "aababb".
+
+The length of the string 6.
+
+Input : s = "abcddefg" , k = 3
+
+Output : 4
+
+Explanation : The longest substring with at most three distinct characters is "bcdd".
+
+The length of the string 4.
+
+-------------------------------------------------------------------------------------------------------------------
+class Solution:
+    def kDistinctChar(self, s, k):
+        # Left pointer of sliding window
+        l = 0
+        # Store the maximum window length (answer)
+        res = 0
+        # Dictionary to keep count of characters in the current window
+        char_cnt = {}
+
+        # Iterate with right pointer (r)
+        for r, ch in enumerate(s):
+            # Add current character to the count dictionary
+            char_cnt[ch] = char_cnt.get(ch, 0) + 1
+
+            # If window has more than k distinct characters → shrink from left
+            while len(char_cnt) > k:
+                char_cnt[s[l]] -= 1  # decrease count of left char
+                if char_cnt[s[l]] == 0:
+                    del char_cnt[s[l]]  # remove completely if count = 0
+                l += 1  # move left pointer forward
+
+            # Update the result with the current valid window size
+            res = max(res, r - l + 1)
+
+        # Return the maximum length found
+        return res
